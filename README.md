@@ -14,7 +14,7 @@ class AddRoleToUsers < ActiveRecord::Migration[5.0]
   end
 end
 ```
-2. Run ```rake db:migrate`` and check that the values changed appropriately.
+2. Run ```rake db:migrate``` and check that the values changed appropriately.
 3. Update all user model related specs.
 4. Update the permitted params in users controller, user form, and any other feature specs.
 5. Update all controller permissions and view logic. Throughout the application, many buttons were wrapped around statements such as `if current_user.is_moderator`. `is_moderator` users would have included both users who had `is_admin` and `is_moderator`. Rather than update all the logic in every view file with something like `if current_user.role == 'moderator' || current_user.role == 'admin'`, I added the original attributes as model method:
