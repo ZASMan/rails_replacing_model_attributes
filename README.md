@@ -19,7 +19,7 @@ end
 4. Update the permitted params in users controller, user form, and any other feature specs. I updated the ```before_action``` methods in my application controller to be used in all the controllers:
 
 ```
-   # Old Application Controller
+  # Old Application Controller
   def authenticate_admin!
     return false if current_user && current_user.is_admin
     msg = "You lack the necessary admin permission for the requested action."
@@ -31,7 +31,7 @@ end
 
   def authenticate_moderator!
     return false if current_user && current_user.is_moderator
-    msg = "You lack the necessary edit permission for the requested action."
+    msg = "You lack the necessary moderator permission for the requested action."
     respond_to do |format|
       format.html { redirect_to(root_path, alert: msg) }
       format.json { render json: msg }
@@ -50,7 +50,7 @@ end
 
   def authenticate_moderator!
     return false if current_user && current_user.role == 'moderator' || current_user.role == 'admin'
-    msg = "You lack the necessary edit permission for the requested action."
+    msg = "You lack the necessary moderator permission for the requested action."
     respond_to do |format|
       format.html { redirect_to(root_path, alert: msg) }
       format.json { render json: msg }
